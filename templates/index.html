@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Content Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>✨ AI Content Generator</h1>
+    <p class="subtitle">Powered by Google Gemini</p>
+  </header>
+
+  <main>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="generate">Generate Content</button>
+      <button class="tab-btn" data-tab="summarize">Summarize Document</button>
+    </div>
+
+    <!-- Generate Content Tab -->
+    <section id="generate" class="tab-content active">
+      <h2>Generate Content</h2>
+      <form id="generate-form">
+        <div class="form-group">
+          <label for="topic">Topic <span class="required">*</span></label>
+          <input
+            type="text"
+            id="topic"
+            name="topic"
+            placeholder="e.g. The impact of AI on healthcare"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="content_type">Content Type</label>
+            <select id="content_type" name="content_type">
+              <option value="blog post">Blog Post</option>
+              <option value="social media post">Social Media Post</option>
+              <option value="product description">Product Description</option>
+              <option value="email newsletter">Email Newsletter</option>
+              <option value="essay">Essay</option>
+              <option value="short story">Short Story</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="tone">Tone</label>
+            <select id="tone" name="tone">
+              <option value="neutral">Neutral</option>
+              <option value="professional">Professional</option>
+              <option value="casual">Casual</option>
+              <option value="enthusiastic">Enthusiastic</option>
+              <option value="formal">Formal</option>
+              <option value="humorous">Humorous</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" id="generate-btn">
+          <span class="btn-text">Generate</span>
+          <span class="btn-spinner" hidden>Generating…</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Summarize Document Tab -->
+    <section id="summarize" class="tab-content">
+      <h2>Summarize Document</h2>
+      <form id="summarize-form">
+        <div class="form-group">
+          <label for="document">Document Text <span class="required">*</span></label>
+          <textarea
+            id="document"
+            name="document"
+            rows="10"
+            placeholder="Paste the text you want to summarize here…"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="length">Summary Length</label>
+          <select id="length" name="length">
+            <option value="concise">Concise (1–2 paragraphs)</option>
+            <option value="detailed">Detailed (3–5 paragraphs)</option>
+            <option value="bullet-point">Bullet Points</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary" id="summarize-btn">
+          <span class="btn-text">Summarize</span>
+          <span class="btn-spinner" hidden>Summarizing…</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Output Section -->
+    <section id="output-section" hidden>
+      <div class="output-header">
+        <h2>Result</h2>
+        <button class="btn-copy" id="copy-btn" title="Copy to clipboard">📋 Copy</button>
+      </div>
+      <div id="output-box"></div>
+    </section>
+
+    <!-- Error Section -->
+    <div id="error-box" class="error-box" hidden></div>
+  </main>
+
+  <footer>
+    <p>Built with <a href="https://ai.google.dev/" target="_blank" rel="noopener">Google Gemini</a> &amp; Flask</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
